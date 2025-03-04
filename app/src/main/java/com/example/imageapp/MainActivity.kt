@@ -27,17 +27,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
-        viewModel.getImages("49085045-188b342da441f8a6e1476a6e9", "red")
+        viewModel.getImages("49173377-9608e8bed0bc21a55db2ae35f", "anime")
         viewModel.getWhether("cf21bdf785394d0bb0a72455250702", "Bishkek")
         binding.apply {
             recyclerView.adapter = adapter
-            viewModel.images.observe(this@MainActivity) { response ->
-                adapter.submitList(response.hits)
-            }
-
-            viewModel.weather.observe(this@MainActivity) { response ->
-                textView.text = response.current?.tempC.toString()
-            }
         }
+
+        viewModel.images.observe(this@MainActivity) { response ->
+            adapter.submitList(response.hits)
+        }
+
+
     }
 }
