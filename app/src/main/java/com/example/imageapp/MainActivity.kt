@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(response.hits)
         }
 
+        // Hotfix
         viewModel.weather.observe(this@MainActivity) { response ->
             binding.textView.text = response.current?.tempC.toString()
         }
