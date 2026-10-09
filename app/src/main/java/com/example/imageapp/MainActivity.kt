@@ -1,12 +1,15 @@
 package com.example.imageapp
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.imageapp.databinding.ActivityMainBinding
 import com.example.imageapp.view.adapters.ApiAdapter
 import com.example.imageapp.viewmodel.ApiViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,11 +38,13 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.images.observe(this@MainActivity) { response ->
             adapter.submitList(response.hits)
+            Snackbar.make(binding.root, "Submit", 2000).show()
         }
 
         // Hotfix
         viewModel.weather.observe(this@MainActivity) { response ->
             binding.textView.text = response.current?.tempC.toString()
+            Snackbar.make(binding.root, "Submit2", 2000).show()
         }
     }
 }
